@@ -1,0 +1,13 @@
+1;Depositou R$ 200,00 em 18 de Outubro de 2015 às  11:36:34;1
+1;Transferiu R$ 30,00 para a Agência asdfg - Conta zxcvb em 18 de Outubro de 2015 às  11:36:52;1
+4;Recebeu R$ 30,00 da Agência 45678 - Conta 12345 em 18 de Outubro de 2015 às  11:36:52;4
+1;Sacou R$ 34,00 em 18 de Outubro de 2015 às  11:37:09;1
+1;Sacou R$ 20,00 em 18 de Outubro de 2015 às  12:38:41;1
+2;Sacou R$ 10,00 em 2 de Março de 2016 às  14:54:52;2
+2;Sacou R$ 200,00 em 6 de Março de 2016 às  15:39:52;2
+2;Sacou R$ 200,00 em 6 de Março de 2016 às  15:40:02;2
+2;Depositou R$ 10,00 em 6 de Março de 2016 às  17:09:16;2
+2;Sacou R$ 100,00 em 6 de Março de 2016 às  17:16:33;2
+2;Transferiu R$ 2,00 para a Agência 45678 - Conta 12345 em 6 de Março de 2016 às  17:17:38;2
+1;Recebeu R$ 2,00 da Agência huehu - Conta brbrb em 6 de Março de 2016 às  17:17:38;1
+2;Depositou R$ 200,00 em 6 de Março de 2016 às  17:17:57;2
