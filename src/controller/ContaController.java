@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Classes.Conta;
+import TO.ContaTO;
 
 /**
  * Servlet implementation class ContaController
@@ -52,8 +54,8 @@ public class ContaController extends HttpServlet {
 		} catch (NumberFormatException e) {	}
 		catch(NullPointerException e){	}
 		
-		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>Consulta de Cliente</title></head><body>");
+		/*PrintWriter out = response.getWriter();
+		out.println("<html><head><title>Consulta de Cliente</title></head><body>");*/
 		
 		Conta conta = new Conta(nome,agencia,cont,senha,valor,estado,contaId,clienteId);
 		conta.carregarConta();
@@ -63,14 +65,27 @@ public class ContaController extends HttpServlet {
 			conta.depositar(valor);
 		
 		
-		out.println("Id Conta: "+conta.getIdConta()+"<br>");
+		/*out.println("Id Conta: "+conta.getIdConta()+"<br>");
 		out.println("Id Cliente: "+conta.getId()+"<br>");
 		out.println("Estado: "+conta.isEstado()+"<br>");
 		out.println("Saldo: "+conta.getSaldo()+"<br>");
 		out.println("Nome: "+conta.getNome()+"<br>");
 		
-		out.println("</body></html>");
+		out.println("</body></html>");*/
+		
+		ContaTO to  = new ContaTO();
+		to.setNome(conta.getNome());
+		to.setId(conta.getId());
+		to.setIdConta(conta.getIdConta());
+		to.setSaldo(conta.getSaldo());
+		to.setEstado(conta.isEstado());
+		to.setAgencia("");
+		to.setConta("");
+		to.setSenha("");
+		
+		request.setAttribute("conta", to);
+		RequestDispatcher view = request.getRequestDispatcher("conta.jsp");
+		view.forward(request, response);
 		
 	}
-
 }

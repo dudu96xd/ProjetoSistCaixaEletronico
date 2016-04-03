@@ -1,8 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,11 +52,18 @@ public class ClienteController extends HttpServlet {
 		
 		cliente.carregar();
 		
-		PrintWriter out = response.getWriter();
+		/*PrintWriter out = response.getWriter();
 		out.println("<html><head><title>Consulta de Cliente</title></head><body>");
 		out.println("id: "+cliente.getId()+"<br>");
 		out.println("nome: "+cliente.getNome()+"<br>");
-		out.println("</body></html>");
+		out.println("</body></html>");*/
+		
+		ClienteTO to = new ClienteTO();
+		to.setId(cliente.getId());
+		to.setNome(cliente.getNome());
+		request.setAttribute("cliente", to);
+		RequestDispatcher view = request.getRequestDispatcher("cliente.jsp");
+		view.forward(request, response);
 		
 	}
 
