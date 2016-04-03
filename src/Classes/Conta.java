@@ -111,7 +111,7 @@ public class Conta extends Cliente {
 		return to.getSaldo();
 	}
 	
-	private void getTO(ContaTO to) {//pega dados da classe ContaTO
+	private void getTO(ContaTO to) {//pega dados da classe ContaTO e passa os mesmos para a classe Conta
 		setNome(to.getNome());
 		setSaldo(to.getSaldo());
 		setId(to.getId());

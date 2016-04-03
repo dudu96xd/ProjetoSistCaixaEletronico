@@ -46,7 +46,6 @@ public class ContaController extends HttpServlet {
 		int clienteId = 0;
 		int contaId = 0;
 		int valor = Integer.parseInt(pSaldo);
-		
 		try {
 			contaId = Integer.parseInt(pContaId);
 		} catch (NumberFormatException e) {

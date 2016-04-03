@@ -17,7 +17,7 @@ public class ContaDAO {
         		PreparedStatement stm=null;
         		stm=conn.prepareStatement(sqlCommand);
         		stm.setInt(1,valor);
-        		stm.setInt(2,to.getId());
+        		stm.setInt(2,to.getIdConta());
         		stm.execute();
         		stm.close();
         	}
@@ -40,7 +40,7 @@ public class ContaDAO {
 	        	PreparedStatement stm=null;
 	        	stm=conn.prepareStatement(sqlUpdate);
 	        	stm.setInt(1,valorATransferir);
-	        	stm.setInt(2,to.getId());
+	        	stm.setInt(2,to.getIdConta());
 	        	stm.execute();
 	        	sqlUpdate = "update conta set saldo=(saldo+?)where idConta=?";
 	        	stm=null;
@@ -65,7 +65,7 @@ public class ContaDAO {
 	   {
 	      stm = conn.prepareStatement(sqlInsert);
 	      stm.setInt(1,valor);
-	      stm.setInt(2,to.getId());
+	      stm.setInt(2,to.getIdConta());
 	      stm.execute();
 	   }
 	   catch (Exception e)
@@ -76,7 +76,7 @@ public class ContaDAO {
 	
 	public void carregar(ContaTO to)
 	{
-	   String sqlSelect = "select * from conta where idConta=?";
+	   String sqlSelect = "select * from conta where idConta = ?";
 	   ResultSet rs = null;
 	   try (Connection conn = ConnectionFactory.obtemConexao();)
 	   {
@@ -113,7 +113,7 @@ public class ContaDAO {
 	   try (Connection conn = ConnectionFactory.obtemConexao();)
 	   {
 		  PreparedStatement stm = conn.prepareStatement(sqlSelect);
-	      stm.setInt(1, to.getId());
+	      stm.setInt(1, to.getIdConta());
 	      rs = stm.executeQuery();
 	      if(rs.next()){  
 	         to.setSaldo(rs.getInt("saldo"));
