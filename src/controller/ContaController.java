@@ -45,12 +45,12 @@ public class ContaController extends HttpServlet {
 		boolean estado = true;
 		int clienteId = 0;
 		int contaId = 0;
-		int valor = Integer.parseInt(pSaldo);
+		int valor = 0;
 		try {
 			contaId = Integer.parseInt(pContaId);
-		} catch (NumberFormatException e) {
-
-		}
+			valor = Integer.parseInt(pSaldo);
+		} catch (NumberFormatException e) {	}
+		catch(NullPointerException e){	}
 		
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><title>Consulta de Cliente</title></head><body>");
