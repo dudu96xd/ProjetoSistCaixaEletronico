@@ -1,0 +1,6 @@
+nota1=500
+nota5=500
+nota10=500
+nota20=500
+nota50=499
+nota100=499

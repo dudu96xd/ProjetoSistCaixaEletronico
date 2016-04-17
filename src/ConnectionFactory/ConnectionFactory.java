@@ -16,6 +16,6 @@ public class ConnectionFactory {
 
 	public static Connection obtemConexao() throws SQLException {
 		return DriverManager
-				.getConnection("jdbc:mysql://localhost/sistcaixa?user=root&password=123");
+				.getConnection("jdbc:mysql://localhost/sistcaixa?user=root&password=1234");
 	}
 }

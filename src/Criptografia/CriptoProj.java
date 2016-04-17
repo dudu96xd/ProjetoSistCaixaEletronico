@@ -1,9 +1,7 @@
 package Criptografia;
-import java.util.*;
 import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.Cipher;
-import java.io.*;
 public class CriptoProj
 {
    static byte[]cripto;

@@ -5,26 +5,17 @@ public class Dispenser
 {
    public int nota1,nota5,nota10,nota20,nota50,nota100;
    
-   public Dispenser()
-   {
-      nota1=0;
-      nota5=0;
-      nota10=0;
-      nota20=0;
-      nota50=0;
-      nota100=0;
-   }
    
-   public Dispenser(txtProjeto txt)
+   public Dispenser()
    {
       try
       {
-         nota1 = Integer.parseInt(txt.getValor1());
-         nota5 = Integer.parseInt(txt.getValor5());
-         nota10 = Integer.parseInt(txt.getValor10());
-         nota20 = Integer.parseInt(txt.getValor20());
-         nota50 = Integer.parseInt(txt.getValor50());
-         nota100 = Integer.parseInt(txt.getValor100());
+         nota1 = Integer.parseInt(txtProjeto.getValor1());
+         nota5 = Integer.parseInt(txtProjeto.getValor5());
+         nota10 = Integer.parseInt(txtProjeto.getValor10());
+         nota20 = Integer.parseInt(txtProjeto.getValor20());
+         nota50 = Integer.parseInt(txtProjeto.getValor50());
+         nota100 = Integer.parseInt(txtProjeto.getValor100());
       }
       catch(IOException e)
       {
@@ -92,96 +83,123 @@ public class Dispenser
    
    public String separarNotas(Dispenser dispenser,int valor)
    {
-      int aux=0;
-      String saida="";
-      while(aux<valor)
-      {
-         int qnt=0;
-         if(valor>=100&&dispenser.nota100>0)
-         {
-            dispenser.nota100--;
-            valor-=100;
-            qnt++;
-            while(valor>=100&&dispenser.nota100>0)
-            {
-               valor-=100;
-               qnt++;
-               dispenser.nota100--;
-            }
-            saida+="\nNota de 100 Reais=> ";
-         }
-         else
-         if(valor>=50&&dispenser.nota50>0)
-         {
-            dispenser.nota50--;
-            valor-=50;
-            qnt++;
-            while(valor>=50&&dispenser.nota50>0)
-            {
-               valor-=50;
-               qnt++;
-               dispenser.nota50--;
-            }
-            saida+="\nNota de 50 Reais=> ";
-         }
-         else
-         if(valor>=20&&dispenser.nota20>0)
-         {
-            dispenser.nota20--;
-            valor-=20;
-            qnt++;
-            while(valor>=20&&dispenser.nota20>0)
-            {
-               valor-=20;
-               qnt++;
-               dispenser.nota20--;
-            }
-            saida+="\nNota de 20 Reais=> ";
-         }
-         else
-         if(valor>=10&&dispenser.nota10>0)
-         {
-            dispenser.nota10--;
-            valor-=10;
-            qnt++;
-            while(valor>=10&&dispenser.nota10>0)
-            {
-               valor-=10;
-               qnt++;
-               dispenser.nota10--;
-            }
-            saida+="\nNota de 10 Reais=> ";
-         }
-         else
-         if(valor>=5&&dispenser.nota5>0)
-         {
-            dispenser.nota5--;
-            valor-=5;
-            qnt++;
-           while(valor>=5&&dispenser.nota5>0)
-           {
-              valor-=5;
-              qnt++;
-              dispenser.nota5--;
-           }
-            saida+="\nNota de 5 Reais=> ";
-         }
-         else
-         if(valor>=1&&dispenser.nota1>0)
-         {  
-            dispenser.nota1--;
-            valor-=1;
-           qnt++;
-           while(valor>=1&&dispenser.nota1>0)
-           {
-              valor-=1;
-              qnt++;
-              dispenser.nota1--;
-           }
-           saida+="\nNota de 1 Real=> ";
-         }
-         saida+=qnt;
-      }
-      return saida+"\n";
+	   String saida="";
+	   int []vet = new int[6];
+	   vet[0]=dispenser.nota1;
+	   vet[1]=dispenser.nota5;
+	   vet[2]=dispenser.nota10;
+	   vet[3]=dispenser.nota20;
+	   vet[4]=dispenser.nota50;
+	   vet[5]=dispenser.nota100;
+	   try 
+	   {
+		   while(0<valor)
+		   {
+			   int qnt=0;
+			   int aux=valor;
+			   if(valor>=100&&dispenser.nota100>0)
+			   {
+				   dispenser.nota100--;
+				   valor-=100;
+				   qnt++;
+				   while(valor>=100&&dispenser.nota100>0)
+				   {
+					   valor-=100;
+					   qnt++;
+					   dispenser.nota100--;
+				   }
+				   saida+="\nNota de 100 Reais=> ";
+			   }
+			   else
+				   if(valor>=50&&dispenser.nota50>0)
+				   {
+					   dispenser.nota50--;
+					   valor-=50;
+					   qnt++;
+					   while(valor>=50&&dispenser.nota50>0)
+					   {
+						   valor-=50;
+						   qnt++;
+						   dispenser.nota50--;
+					   }
+					   saida+="\nNota de 50 Reais=> ";
+				   }
+				   else
+					   if(valor>=20&&dispenser.nota20>0)
+					   {
+						   dispenser.nota20--;
+						   valor-=20;
+						   qnt++;
+						   while(valor>=20&&dispenser.nota20>0)
+						   {
+							   valor-=20;
+							   qnt++;
+							   dispenser.nota20--;
+						   }
+						   saida+="\nNota de 20 Reais=> ";
+					   }
+					   else
+						   if(valor>=10&&dispenser.nota10>0)
+						   {
+							   dispenser.nota10--;
+							   valor-=10;
+							   qnt++;
+							   while(valor>=10&&dispenser.nota10>0)
+							   {
+								   valor-=10;
+								   qnt++;
+								   dispenser.nota10--;
+							   }
+							   saida+="\nNota de 10 Reais=> ";
+						   }
+						   else
+							   if(valor>=5&&dispenser.nota5>0)
+							   {
+								   dispenser.nota5--;
+								   valor-=5;
+								   qnt++;
+								   while(valor>=5&&dispenser.nota5>0)
+								   {
+									   valor-=5;
+									   qnt++;
+									   dispenser.nota5--;
+								   }
+								   saida+="\nNota de 5 Reais=> ";
+							   }
+							   else
+								   if(valor>=1&&dispenser.nota1>0)
+								   {  
+									   dispenser.nota1--;
+									   valor-=1;
+									   qnt++;
+									   while(valor>=1&&dispenser.nota1>0)
+									   {
+										   valor-=1;
+										   qnt++;
+										   dispenser.nota1--;
+									   }
+									   saida+="\nNota de 1 Real=> ";
+								   }
+								   else 
+									   if(aux==valor)
+									   {
+										   dispenser.nota1 = vet[0];
+										   dispenser.nota5 = vet[1];
+										   dispenser.nota10 = vet[2];
+										   dispenser.nota20 = vet[3];
+										   dispenser.nota50 = vet[4];
+										   dispenser.nota100 = vet[5];
+										   txtProjeto.atualizarDispenser(dispenser);
+										   return "Sem cédulas necessárias para sacar";
+									   }
+			   		saida+=qnt;
+		   		}
+
+		   	txtProjeto.atualizarDispenser(dispenser);
+	   }
+	   catch (IOException e) {
+		e.printStackTrace();}
+	   return saida+"\n";
    }
+
 }

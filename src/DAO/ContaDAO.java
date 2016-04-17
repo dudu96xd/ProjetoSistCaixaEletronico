@@ -2,7 +2,6 @@ package DAO;
 import java.sql.*;
 
 import ConnectionFactory.ConnectionFactory;
-import TO.ClienteTO;
 //import TO.ClienteTO;
 import TO.ContaTO;
 
@@ -17,7 +16,7 @@ public class ContaDAO {
         		PreparedStatement stm=null;
         		stm=conn.prepareStatement(sqlCommand);
         		stm.setInt(1,valor);
-        		stm.setInt(2,to.getId());
+        		stm.setInt(2,to.getIdConta());
         		stm.execute();
         		stm.close();
         	}
@@ -27,7 +26,7 @@ public class ContaDAO {
 			}
 		}
 		else{
-			System.out.println("Saldo insuficiente");
+			System.err.println("Saldo insuficiente");
 		}
 	}
 	public void transferir(ContaTO to,int valorATransferir,int ContaATransferir)
@@ -40,7 +39,7 @@ public class ContaDAO {
 	        	PreparedStatement stm=null;
 	        	stm=conn.prepareStatement(sqlUpdate);
 	        	stm.setInt(1,valorATransferir);
-	        	stm.setInt(2,to.getId());
+	        	stm.setInt(2,to.getIdConta());
 	        	stm.execute();
 	        	sqlUpdate = "update conta set saldo=(saldo+?)where idConta=?";
 	        	stm=null;
@@ -65,7 +64,7 @@ public class ContaDAO {
 	   {
 	      stm = conn.prepareStatement(sqlInsert);
 	      stm.setInt(1,valor);
-	      stm.setInt(2,to.getId());
+	      stm.setInt(2,to.getIdConta());
 	      stm.execute();
 	   }
 	   catch (Exception e)
@@ -76,7 +75,7 @@ public class ContaDAO {
 	
 	public void carregar(ContaTO to)
 	{
-	   String sqlSelect = "SELECT * FROM cliente,conta WHERE idConta = ?";
+	   String sqlSelect = "select * from conta where idConta = ?";
 	   ResultSet rs = null;
 	   try (Connection conn = ConnectionFactory.obtemConexao();)
 	   {
@@ -88,8 +87,17 @@ public class ContaDAO {
 	         to.setEstado(rs.getBoolean("estado"));
 	         to.setIdConta(rs.getInt("idConta"));
 	         to.setId(rs.getInt("idCliente"));
-	         to.setNome(rs.getString("nome"));
 	      }
+	      stm = null;
+	      rs = null;
+	      stm = conn.prepareStatement("select nome from cliente where idCliente = ?");
+	      stm.setInt(1, to.getId());
+	      rs = stm.executeQuery();
+	      if(rs.next())
+	      {
+	    	  to.setNome(rs.getString("nome"));
+	      }
+	      
 	   }
 	   catch (Exception e)
 	   {
@@ -104,7 +112,7 @@ public class ContaDAO {
 	   try (Connection conn = ConnectionFactory.obtemConexao();)
 	   {
 		  PreparedStatement stm = conn.prepareStatement(sqlSelect);
-	      stm.setInt(1, to.getId());
+	      stm.setInt(1, to.getIdConta());
 	      rs = stm.executeQuery();
 	      if(rs.next()){  
 	         to.setSaldo(rs.getInt("saldo"));

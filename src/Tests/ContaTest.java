@@ -8,12 +8,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Classes.Conta;
+import TXT.txtProjeto;
 
 public class ContaTest {
 	Conta conta,copia;
 	@Before
 	public void setUp() throws Exception {
-		
+		txtProjeto.setUp();
 		conta = new Conta("Igor Eduardo","12345","45678","78901",900,false,1,1);
 		copia = new Conta();
 		copia.setIdConta(1);
@@ -37,19 +38,48 @@ public class ContaTest {
 	
 	@Test 
 	public void test01depositar(){
-		conta.depositar(50);
-		assertEquals("teste deposito",copia.getSaldo()+50,conta.getSaldo());
+		try {
+			conta.depositar(50);
+			assertEquals("teste deposito",copia.getSaldo()+50,conta.getSaldo());
+		} catch (IOException e) {
+			e.printStackTrace();
+			fail("erro no txt");
+		}
 	}
 	
 	@Test
 	public void test02sacar(){
-		conta.sacar(150);
+		try {
+			conta.sacar(150);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail("falha no txt");
+		}
 		assertEquals("teste sacar",copia.getSaldo()-150,conta.getSaldo());
 	}
 	
 	@Test
+	public void test06Logar()
+	{
+		try {
+			assertEquals("teste logar",conta.logar(),false);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("falha ao tentar logar");
+		}
+	}
+	
+	@Test
 	public void test03transferir(){
-		conta.transferir(10, 2);
+		try {
+			String contaAEnviar = txtProjeto.getIdConta("brbrb");
+			conta.transferir(10, Integer.parseInt(contaAEnviar));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail("fail txt");
+		}
 		assertEquals("teste transferencia",conta.getSaldo(),copia.getSaldo()-10);
 	}
 	
@@ -60,6 +90,7 @@ public class ContaTest {
 			assertEquals("teste verExtrato",conta.verExtrato(),copia.verExtrato());
 		} catch (IOException e) {
 			e.printStackTrace();
+			fail("falha o no txt");
 		}
 	}
 	
