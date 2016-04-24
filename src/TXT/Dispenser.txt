@@ -1,0 +1,6 @@
+nota1=435
+nota5=486
+nota10=442
+nota20=476
+nota50=480
+nota100=403
