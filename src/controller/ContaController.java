@@ -118,45 +118,52 @@ public class ContaController extends HttpServlet {
 			view = request.getRequestDispatcher("transferir.jsp");
 			view.forward(request, response);
 		}
-		if(valor!=0)
+		if(session.getAttribute("sessaoConta")!=null)
 		{
-			conta.carregarConta();
-			if(pAcao.equals("Transferir")){
-				try {
-					//conta.getTO(to);
-					idContaTransf = txtProjeto.confere(agencia,cont);
-					if(idContaTransf!=-1){
-						conta.transferir(valor, idContaTransf);
-						view = request.getRequestDispatcher("conta.jsp");
-						view.forward(request, response);
+			if(valor!=0)
+			{
+				conta.carregarConta();
+				if(pAcao.equals("Transferir")){
+					try {
+						//conta.getTO(to);
+						idContaTransf = txtProjeto.confere(agencia,cont);
+						if(idContaTransf!=-1){
+							conta.transferir(valor, idContaTransf);
+							view = request.getRequestDispatcher("conta.jsp");
+							view.forward(request, response);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
-			}
 
-			if(pAcao.equals("Sacar"))
-			{
-				conta.sacar(valor);
-				view = request.getRequestDispatcher("conta.jsp");
-				view.forward(request, response);
-			}else if(pAcao.equals("Depositar"))
-			{
-				try {
-					/*to.setIdConta(conta.getIdConta());
-					to.setSenha(conta.getSenha());
-					txtProjeto.confereSenha(to);*/
-					conta.depositar(valor);
+				if(pAcao.equals("Sacar"))
+				{
+					conta.sacar(valor);
 					view = request.getRequestDispatcher("conta.jsp");
 					view.forward(request, response);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				}else if(pAcao.equals("Depositar"))
+				{
+					try {
+						/*to.setIdConta(conta.getIdConta());
+					to.setSenha(conta.getSenha());
+					txtProjeto.confereSenha(to);*/
+						conta.depositar(valor);
+						view = request.getRequestDispatcher("conta.jsp");
+						view.forward(request, response);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		}
-
+		else
+		{
+			view = request.getRequestDispatcher("login.jsp");
+			view.forward(request, response);
+		}
 		if(pAcao.equals("logout")){
 			session.invalidate();
 			view = request.getRequestDispatcher("login.jsp");
