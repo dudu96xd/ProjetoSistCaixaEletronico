@@ -17,7 +17,7 @@
 		<h3 class="page-header">
 			Transferência entre Contas #${sessaoConta.idConta}</h3>
 		<form class="login-form"
-			action="ContaController.do?idConta=${sessaoConta.idConta}"
+			action="controller.do?command=ContaTransferir"
 			method="post">
 			<!-- area de campos do form -->
 			<div class="row">

@@ -8,24 +8,24 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="ContaController.do?acao=index">Caixa
+			<a class="navbar-brand" href="controller.do?command=ContaIndex">Caixa
 				Eletrônico</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="ContaController.do?acao=telaSacar">Sacar</a>
+                    <li><a href="controller.do?command=TelaSacar">Sacar</a>
 				</li>
 				<li><a
-					href="ContaController.do?acao=telaDepositar">Depositar</a>
+					href="controller.do?command=TelaDepositar">Depositar</a>
 				</li>
 				<li><a
-					href="ContaController.do?acao=Extrato">Extrato</a>
+					href="controller.do?command=Extrato">Extrato</a>
 				</li>
 				<li><a
-					href="ContaController.do?acao=telaTransf">Transferir</a>
+					href="controller.do?command=TelaTransf">Transferir</a>
 				</li>
 				<li><a
-					href="ContaController.do?acao=logout">Logout</a>
+					href="controller.do?command=LogOut">Logout</a>
 				</li>
 			</ul>
             </div>

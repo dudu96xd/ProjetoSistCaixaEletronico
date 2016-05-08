@@ -15,7 +15,7 @@
     <div id="main" class="container">
     <h3 class="page-header">
 			Depositar #${sessaoConta.idConta}</h3>
-    <form action="ContaController.do?idConta=${sessaoConta.idConta}" method="post">
+    <form action="controller.do?command=ContaDepositar" method="post">
         <!-- area de campos do form -->
             <div class="row">
                 <div class="form-group col-md-12">
