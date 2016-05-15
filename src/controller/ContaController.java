@@ -4,46 +4,39 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import Classes.Conta;
-import TO.ContaTO;
-import TXT.txtProjeto;
 import command.Command;
 
 @WebServlet("/controller.do")
 public class ContaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doExecute(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		
-		try {
-			request.setCharacterEncoding("UTF-8");
-			response.setCharacterEncoding("UTF-8");
-			Command comando = (Command)Class.forName("command."+request.getParameter("command")).newInstance();
-			comando.executa(request, response);
-		} catch (InstantiationException | IllegalAccessException
-				| ClassNotFoundException e) {
-			e.printStackTrace();
-			throw new ServletException(e);
-		}
+	protected void doExecute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+			try {
+				request.setCharacterEncoding("UTF-8");
+				response.setCharacterEncoding("UTF-8");
+				Command comando = (Command) Class.forName("command." + request.getParameter("command")).newInstance();
+				comando.executa(request, response);
+			} catch ( NullPointerException|InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+				RequestDispatcher view = null;
+				view = request.getRequestDispatcher("login.jsp");
+				view.forward(request, response);
+			}
+			
 	}
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doExecute(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doExecute(request, response);
 	}
 
-	
 }
