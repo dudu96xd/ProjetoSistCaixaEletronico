@@ -33,7 +33,7 @@
 				</div>
 				<div class="form-group col-md-12">
 					<label for="valor">Valor(R$):</label> <input type="text"
-						class="form-control" name="valor" id="valor" required
+						class="form-control" name="valor" onKeyUp="mascaraMoeda(this)" id="valor" required
 						maxlength="10" placeholder="Valor para transferência.">
 
 				</div>
@@ -46,10 +46,6 @@
 				</div>
 		</form>
 	</div>
-
-
-
-
 	</div>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -58,4 +54,5 @@
 <c:if test="${empty sessaoConta}">
 	<jsp:forward page="login.jsp"></jsp:forward>
 </c:if>
+<script src="js/formatacao.js"></script>
 </html>

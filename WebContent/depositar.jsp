@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="valor">Valor</label>
-                    <input type="text" class="form-control" name="valor" id="saldo" required maxlength="100" placeholder="Valor desejado para depositar.">
+                    <input type="text" class="form-control" name="valor" onKeyUp="mascaraMoeda(this)" id="saldo" required maxlength="100" placeholder="Valor desejado para depositar.">
                 </div>
             </div>
             <hr />
@@ -38,4 +38,5 @@
 <c:if test="${empty sessaoConta}">
 	<jsp:forward page="login.jsp"></jsp:forward>
 </c:if>
+<script src="js/formatacao.js"></script>
 </html>
